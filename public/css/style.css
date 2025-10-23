@@ -17,35 +17,40 @@ body {
     align-items: end;
     flex-wrap: wrap;
 }
-
-#no-button {
+#no-button,
+#yes-button {
+    /* shared button defaults - use a custom property so font-size can scale */
+    --btn-size: 40px; /* change this on the element or in media queries to grow/shrink */
     margin: 0 10px;
     color: white;
-    background-color: red;
-    height: 40px !important;
     width: auto;
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--btn-size);
+    padding: 0 16px;
+    /* Make font size proportional to the button height */
+    font-size: calc(var(--btn-size) * 0.45);
+    line-height: 1;
+}
 
-    p {
-        margin: 0;
-        object-fit: contain;
-    }
+#no-button {
+    background-color: red;
 }
 
 #yes-button {
-    margin: 0 10px;
-    color: white;
-    border: none;
     background-color: green;
-    cursor: pointer;
-    height: 40px;
+}
 
-    p {
-        margin: 0;
-        object-fit: contain;
-    }
+/* style the <p> inside the buttons (keeps your existing HTML structure working) */
+#no-button p,
+#yes-button p {
+    margin: 0;
+    padding: 0;
 }
 
 /* Make responsive for mobile */
@@ -73,12 +78,17 @@ body {
     width: 100%;
     height: auto;
     margin-top: 20px;
-
-    img {
-        width: auto;
-        height: 250px;
-    }
+    position: relative;
 }
+
+.banner-gif img {
+    width: auto;
+    height: 250px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* overlay removed — banner swaps are instant now */
 
 .language-selector {
     margin-top: 30px;
